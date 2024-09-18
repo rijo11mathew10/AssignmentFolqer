@@ -5,13 +5,13 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import type { MenuProps } from "antd";
-import { Breadcrumb, Layout, Menu, theme, Typography } from "antd";
+import { Layout, theme, Typography } from "antd";
 import MainTable from "./components/MainTable";
 import SubTable from "./components/SubTable";
 
 const { Title } = Typography;
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Content, Footer } = Layout;
 
 const items1: MenuProps["items"] = ["1", "2"].map((key) => ({
   key,
@@ -77,8 +77,7 @@ const App: React.FC = () => {
                 <Title level={3} style={{ paddingBottom: "5px" }}>
                   Aggregated Jobs for {selectedYear}
                 </Title>
-                <SubTable year={selectedYear}/>
-
+                <SubTable year={selectedYear} />
               </>
             )}
           </Content>

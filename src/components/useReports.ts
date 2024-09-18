@@ -1,5 +1,5 @@
 // hooks/useReports.ts
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 
 const fetchReports = async (): Promise<any[]> => {
   const response = await fetch('http://localhost:3000/reports');

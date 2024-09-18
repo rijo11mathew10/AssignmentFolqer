@@ -1,11 +1,10 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import { SearchOutlined } from "@ant-design/icons";
 import type { InputRef, TableColumnsType, TableColumnType } from "antd";
 import { Button, Input, Space, Table, Spin, Alert } from "antd";
 import type { FilterDropdownProps } from "antd/es/table/interface";
 import Highlighter from "react-highlight-words";
-import Chart from "react-apexcharts";
-import type { ApexOptions } from "apexcharts";
+
 import { useReports } from "./useReports"; // Import the custom hook for specific year
 
 interface DataType {
