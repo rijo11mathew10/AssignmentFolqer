@@ -10,7 +10,7 @@ const fetchReports = async (): Promise<any[]> => {
 };
 
 const fetchReportsByYear = async (year: number): Promise<any[]> => {
-  const response = await fetch(`https://assignment-folqer-backend.onrender.com/reports/${year}`);
+  const response = await fetch(`https://assignment-folqer-backend.onrender.com/reports/:${year}`);
   if (!response.ok) {
     throw new Error(`Failed to fetch reports for year ${year}`);
   }
