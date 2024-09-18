@@ -1,10 +1,5 @@
 import React, { useState } from "react";
-import {
-  LaptopOutlined,
-  NotificationOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
-import type { MenuProps } from "antd";
+
 import { Layout, theme, Typography } from "antd";
 import MainTable from "./components/MainTable";
 import SubTable from "./components/SubTable";
@@ -13,35 +8,9 @@ const { Title } = Typography;
 
 const { Header, Content, Footer } = Layout;
 
-const items1: MenuProps["items"] = ["1", "2"].map((key) => ({
-  key,
-  label: `nav ${key}`,
-}));
-
-const items2: MenuProps["items"] = [
-  UserOutlined,
-  LaptopOutlined,
-  NotificationOutlined,
-].map((icon, index) => {
-  const key = String(index + 1);
-
-  return {
-    key: `sub${key}`,
-    icon: React.createElement(icon),
-    label: `subnav ${key}`,
-    children: new Array(4).fill(null).map((_, j) => {
-      const subKey = index * 4 + j + 1;
-      return {
-        key: subKey,
-        label: `option${subKey}`,
-      };
-    }),
-  };
-});
-
 const App: React.FC = () => {
   const {
-    token: { colorBgContainer, borderRadiusLG },
+    token: { colorBgContainer },
   } = theme.useToken();
 
   const [selectedYear, setSelectedyear] = useState<number | null>(null);
