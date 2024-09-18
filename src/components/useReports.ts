@@ -2,7 +2,7 @@
 import { useQuery } from '@tanstack/react-query';
 
 const fetchReports = async (): Promise<any[]> => {
-  const response = await fetch('http://localhost:3000/reports');
+  const response = await fetch('https://assignment-folqer-backend.onrender.com/reports');
   if (!response.ok) {
     throw new Error('Failed to fetch reports');
   }
@@ -10,7 +10,7 @@ const fetchReports = async (): Promise<any[]> => {
 };
 
 const fetchReportsByYear = async (year: number): Promise<any[]> => {
-  const response = await fetch(`http://localhost:3000/reports/${year}`);
+  const response = await fetch(`https://assignment-folqer-backend.onrender.com/${year}`);
   if (!response.ok) {
     throw new Error(`Failed to fetch reports for year ${year}`);
   }
