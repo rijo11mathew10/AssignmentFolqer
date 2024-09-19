@@ -177,13 +177,9 @@ const SubTable: React.FC<SubTableProps> = ({ year }) => {
       year: year, // Include the year for consistency
     })) || [];
 
-  
-
-
   return (
     <>
       <Table columns={columns} dataSource={filteredData} />
-      
     </>
   );
 };
