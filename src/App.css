@@ -14,42 +14,37 @@
   flex-direction: column;
   width: 100%;
   min-height: 100vh;
+  flex-grow: 1; /* Ensures the layout expands to fill space */
 }
 
-
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.ant-layout-content {
+  padding: 24px;
+  background-color: #f0f2f5;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content horizontally */
 }
 
 .card {
   padding: 2em;
+  width: 100%; /* Ensure cards take full width inside content */
+  max-width: 1200px; /* Limit max width for better readability */
 }
 
 .read-the-docs {
   color: #888;
+}
+.ant-layout-header {
+  background: #001529;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 0 50px;
+}
+
+.ant-avatar {
+  cursor: pointer;
+}
+
+.ant-menu {
+  border-bottom: none;
 }

@@ -1,58 +1,71 @@
 import React, { useState } from "react";
-
-import { Layout, theme, Typography } from "antd";
+import { Layout, Row, Col, Card, Space, Typography } from "antd";
 import MainTable from "./components/MainTable";
 import SubTable from "./components/SubTable";
-
-const { Title } = Typography;
+import RightSidebar from "./components/RightSidebar"; // Import the right sidebar component
 
 const { Header, Content, Footer } = Layout;
+const { Title } = Typography;
 
 const App: React.FC = () => {
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken();
-
-  const [selectedYear, setSelectedyear] = useState<number | null>(null);
+  const [selectedYear, setSelectedYear] = useState<number | null>(null);
 
   const handleRowSelect = (year: number) => {
-    setSelectedyear(year);
+    setSelectedYear(year);
   };
+
   return (
-    <Layout style={{ minHeight: "100vh", minWidth: "250vh" }}>
+    <Layout style={{ minHeight: "100vh" }}>
       <Header
         style={{
+          background: "#001529",
+          padding: "20px 50px",
           display: "flex",
           alignItems: "center",
-          padding: 0,
-          background: "#001529",
+          justifyContent: "center",
+          boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
         }}
       >
-        <Title level={2} style={{ color: "white" }}>
+        <Title
+          level={2}
+          style={{
+            color: "white",
+            fontSize: "36px",
+            letterSpacing: "2px",
+            textTransform: "uppercase",
+            textAlign: "center",
+            margin: 0,
+          }}
+        >
           ML Engineer Salaries
         </Title>
       </Header>
-      <Layout style={{ flex: 1 }}>
-        <Layout style={{ padding: "0", flex: 1 }}>
-          <Content
-            style={{ padding: "24px", margin: 0, background: colorBgContainer }}
-          >
-            <Title level={2} style={{ paddingBottom: "5px" }}>
-              Main Table
-            </Title>
-            <MainTable onRowSelect={handleRowSelect} />
-            {selectedYear && (
-              <>
-                <Title level={3} style={{ paddingBottom: "5px" }}>
-                  Aggregated Jobs for {selectedYear}
-                </Title>
-                <SubTable year={selectedYear} />
-              </>
-            )}
-          </Content>
-        </Layout>
-      </Layout>
-      <Footer style={{ textAlign: "center" }}>
+
+      <Content style={{ padding: "24px" }}>
+        <Row gutter={24}>
+          {/* Left side (Main Table and SubTable) */}
+          <Col span={16}>
+            <Space direction="vertical" size="large" style={{ width: "100%" }}>
+              <Card title="Main Table" bordered={false}>
+                <MainTable onRowSelect={handleRowSelect} />
+              </Card>
+
+              {selectedYear && (
+                <Card title={`Aggregated Jobs for ${selectedYear}`} bordered={false}>
+                  <SubTable year={selectedYear} />
+                </Card>
+              )}
+            </Space>
+          </Col>
+
+          {/* Right side (Dynamic Sidebar) */}
+          <Col span={8}>
+            {!selectedYear && <RightSidebar />} {/* Display only when no year is selected */}
+          </Col>
+        </Row>
+      </Content>
+
+      <Footer style={{ textAlign: "center", background: "#001529", color: "white" }}>
         Ant Design ©{new Date().getFullYear()} Created by Ant UED
       </Footer>
     </Layout>
