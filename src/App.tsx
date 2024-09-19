@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-import { Layout, Row, Col, Card, Space, Typography } from "antd";
+import { Layout, Typography, Card } from "antd";
 import MainTable from "./components/MainTable";
 import SubTable from "./components/SubTable";
-import RightSidebar from "./components/RightSidebar"; // Import the right sidebar component
+import RightSidebar from "./components/RightSidebar";
 
-const { Header, Content, Footer } = Layout;
 const { Title } = Typography;
+const { Header, Content, Footer, Sider } = Layout;
 
 const App: React.FC = () => {
-  const [selectedYear, setSelectedYear] = useState<number | null>(null);
+  const [selectedYear, setSelectedyear] = useState<number | null>(null);
 
   const handleRowSelect = (year: number) => {
-    setSelectedYear(year);
+    setSelectedyear(year);
   };
 
   return (
@@ -40,32 +40,39 @@ const App: React.FC = () => {
           ML Engineer Salaries
         </Title>
       </Header>
-
-      <Content style={{ padding: "24px" }}>
-        <Row gutter={24}>
-          {/* Left side (Main Table and SubTable) */}
-          <Col span={16}>
-            <Space direction="vertical" size="large" style={{ width: "100%" }}>
+      <Layout style={{ flex: 1 }}>
+        <Content style={{ padding: "24px", background: "#f0f2f5" }}>
+          <Layout style={{ display: "flex", height: "100%" }}>
+            <Layout style={{ flex: 2, marginRight: "20px" }}>
               <Card title="Main Table" bordered={false}>
                 <MainTable onRowSelect={handleRowSelect} />
               </Card>
-
-              {selectedYear && (
-                <Card title={`Aggregated Jobs for ${selectedYear}`} bordered={false}>
-                  <SubTable year={selectedYear} />
-                </Card>
+            </Layout>
+            <Sider
+              width={300} // Set the width of the Sider
+              style={{
+                background: "#ffffff",
+                boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+                padding: "20px",
+                overflow: "auto",
+              }}
+            >
+              {selectedYear ? (
+                <SubTable year={selectedYear} />
+              ) : (
+                <RightSidebar />
               )}
-            </Space>
-          </Col>
-
-          {/* Right side (Dynamic Sidebar) */}
-          <Col span={8}>
-            {!selectedYear && <RightSidebar />} {/* Display only when no year is selected */}
-          </Col>
-        </Row>
-      </Content>
-
-      <Footer style={{ textAlign: "center", background: "#001529", color: "white" }}>
+            </Sider>
+          </Layout>
+        </Content>
+      </Layout>
+      <Footer
+        style={{
+          textAlign: "center",
+          background: "#001529",
+          color: "white",
+        }}
+      >
         Ant Design ©{new Date().getFullYear()} Created by Ant UED
       </Footer>
     </Layout>
