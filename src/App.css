@@ -48,3 +48,14 @@
 .ant-menu {
   border-bottom: none;
 }
+
+@media (max-width: 768px) {
+  .ant-typography {
+    font-size: 1.5rem;
+  }
+}
+@media (max-width: 768px) {
+  .right-sidebar-col {
+    border-left: none; /* Remove the left border on smaller screens */
+  }
+}
